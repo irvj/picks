@@ -45,11 +45,12 @@ def get_image_files(folder_path: Union[str, Path], include_extensions: Optional[
     return image_files
 
 
-def create_destination_structure(target_folder: Path, destination_base: Path) -> Path:
+def create_destination_structure(target_folder: Path, destination_base: Path, dry_run: bool = False) -> Path:
     """Create the destination folder structure mirroring the target folder name."""
     target_name = Path(target_folder).name
     destination_folder = Path(destination_base) / target_name
-    destination_folder.mkdir(parents=True, exist_ok=True)
+    if not dry_run:
+        destination_folder.mkdir(parents=True, exist_ok=True)
     return destination_folder
 
 
@@ -431,7 +432,7 @@ def main() -> None:
     target_path, destination_base, quality, include_extensions = validate_arguments(args)
     
     # Create destination folder structure
-    destination_folder = create_destination_structure(target_path, destination_base)
+    destination_folder = create_destination_structure(target_path, destination_base, args.dry_run)
     print(f"Output will be saved to: {destination_folder}")
     
     # Prepare processing tasks
