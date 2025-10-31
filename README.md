@@ -274,7 +274,7 @@ Space saved: 4.7GB
 A: No, original files are never modified. The script only reads from the source folder and creates new optimized files in the destination folder.
 
 **Q: Can I convert WebP to JPG?**
-A: No, this tool only supports JPG and WebP as output formats. However, WebP files can be used as input and converted to JPG.
+A: Yes, this tool accepts WebP as input and can convert it to either JPG or WebP output. Simply use `--format jpg` when processing WebP files.
 
 **Q: What happens to transparent PNG images?**
 A: Transparency is converted to a white background when saving as JPG or WebP, since these formats require RGB mode.
@@ -287,9 +287,6 @@ A: Use `--keep-names --skip-existing` flags together. This will skip files that 
 
 **Q: Can I use this in automated scripts?**
 A: Yes! The script has predictable exit codes (0 for success, 1 for errors) and can be easily integrated into shell scripts or automation workflows.
-
-**Q: Why are some images rotated incorrectly?**
-A: Modern versions (1.0.0+) automatically handle EXIF orientation. If you're using an older version, update to the latest release.
 
 **Q: How do I process multiple folders at once?**
 A: Use a bash loop:
